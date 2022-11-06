@@ -145,7 +145,7 @@ export default ({setSearch}) => {
                         <div className={'flex flex-col justify-between gap-5 px-2'}>
                             <Subtitle fontSize={2}>General information</Subtitle>
                             <div className={'flex justify-between gap-5'}>
-                                <div className={'flex flex-col gap-5'}>
+                                <div className={'flex flex-col gap-5 w-4/12'}>
                                     <Text className={'flex flex-col'}>
                                         <Text aside>Full name</Text>
                                         <Text>{character.biography['full-name']}</Text>
