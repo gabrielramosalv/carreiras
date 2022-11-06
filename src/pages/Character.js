@@ -4,7 +4,9 @@ import SuperHeroApi from "../util/SuperHeroApi";
 import {Subtitle, Text, Title} from "../assets/style/global/classes";
 import styled from "styled-components";
 import CharacterAlignmentEnum from "../types/CharacterAlignmentEnum";
-import {f_s_minor_2, p_main_color_2} from "../assets/style/global/variables";
+import {f_s_minor_2, p_main_color_1, p_main_color_2} from "../assets/style/global/variables";
+import addIcon from "../assets/media/icon/+_white.svg";
+import Button from "../components/Button";
 
 const CharacterContainer = styled.div`
   max-width: 1200px;
@@ -14,7 +16,6 @@ const CharacterContainer = styled.div`
 const CharacterImage = styled.img`
   object-fit: cover;
   max-width: 500px;
-  height: 500px;
   width: 100%;
 `
 
@@ -22,6 +23,7 @@ const CharacterDetailsContainer = styled.div`
   border: 1px solid ${p_main_color_2};
   font-size: ${f_s_minor_2};
   width: ${props => props.hasImage ? 50 : 100}%;
+  border-top: 12px solid ${p_main_color_1};
 `
 
 const CharacterStatsBar = styled.div`
@@ -84,11 +86,14 @@ export default ({setSearch}) => {
                     {hasImage && <CharacterImage src={character.image.url} className={'rounded-xl'}
                                                  onError={() => setHasImage(false)}/>}
                     <CharacterDetailsContainer className={'flex flex-col gap-8 p-5 rounded-xl'} hasImage={hasImage}>
-                        <div className={'flex gap-2 items-center'}>
-                            <Title fontSize={4} fontWeight={2}>{character.name}</Title>
-                            <Text color={characterAlignmentDefinition.mainColor} fontWeight={2} fontSize={-1}>
-                                {characterAlignmentDefinition.name}
-                            </Text>
+                        <div className={'flex items-center justify-between'}>
+                            <div className={'flex gap-2 items-center'}>
+                                <Title fontSize={4} fontWeight={2}>{character.name}</Title>
+                                <Text color={characterAlignmentDefinition.mainColor} fontWeight={2} fontSize={-1}>
+                                    {characterAlignmentDefinition.name}
+                                </Text>
+                            </div>
+                            <Button msg={'Add to team'} image={addIcon}/>
                         </div>
                         {character.powerstats != null && (
                             <div className={'flex flex-col gap-5 items-start w-full px-2'}>
@@ -146,46 +151,46 @@ export default ({setSearch}) => {
                             <Subtitle fontSize={2}>General information</Subtitle>
                             <div className={'flex justify-between gap-5'}>
                                 <div className={'flex flex-col gap-5 w-4/12'}>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Full name</Text>
                                         <Text>{character.biography['full-name']}</Text>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Aliases</Text>
                                         <div className={'flex flex-col'}>
                                             {character.biography.aliases.map((aliase, index) => <Text
                                                 key={index}>{aliase}</Text>)}
                                         </div>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Alter egos</Text>
                                         <Text>{character.biography['alter-egos']}</Text>
                                     </Text>
                                 </div>
                                 <div className={'flex flex-col gap-5'}>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Gender</Text>
                                         <Text>{character.appearance.gender}</Text>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Race</Text>
                                         <Text>{character.appearance.race}</Text>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Height</Text>
                                         <Text>{character.appearance.height}</Text>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Weight</Text>
                                         <Text>{character.appearance.weight}</Text>
                                     </Text>
                                 </div>
                                 <div className={'flex flex-col gap-5'}>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Eye color</Text>
                                         <Text>{character.appearance['eye-color']}</Text>
                                     </Text>
-                                    <Text className={'flex flex-col'}>
+                                    <Text className={'flex flex-col gap-1'}>
                                         <Text aside>Hair color</Text>
                                         <Text>{character.appearance['hair-color']}</Text>
                                     </Text>
@@ -194,17 +199,25 @@ export default ({setSearch}) => {
                         </div>
                         <div className={'flex flex-col gap-5 px-2'}>
                             <Subtitle fontSize={2}>Connections</Subtitle>
-                            <div className={'flex flex-col gap-2'}>
+                            <div className={'flex flex-col gap-1'}>
                                 <Text aside>Group affiliations</Text>
                                 <Text>{character.connections['group-affiliation']}</Text>
                             </div>
-                            <div className={'flex flex-col gap-2'}>
+                            <div className={'flex flex-col gap-1'}>
                                 <Text aside>Relatives</Text>
                                 <Text>{character.connections.relatives}</Text>
                             </div>
                         </div>
                         <div className={'flex flex-col gap-5 px-2'}>
                             <Subtitle fontSize={2}>Other information</Subtitle>
+                            <div className={'flex gap-2'}>
+                                <Text aside>Publisher</Text>
+                                <Text>{character.biography.publisher}</Text>
+                            </div>
+                            <div className={'flex gap-2'}>
+                                <Text aside>First Appearance</Text>
+                                <Text>{character.biography['first-appearance']}</Text>
+                            </div>
                             <div className={'flex gap-2'}>
                                 <Text aside>Place of birth</Text>
                                 <Text>{character.biography['place-of-birth']}</Text>
