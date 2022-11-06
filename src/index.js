@@ -4,10 +4,11 @@ import App from './App';
 
 import './assets/style/normalize.css';
 import './assets/style/fonts.css';
+import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
 );
