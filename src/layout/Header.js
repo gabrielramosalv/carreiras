@@ -3,6 +3,7 @@ import {
     f_s_headline_3,
     header_height,
     p_aside_color_1,
+    p_aside_color_1d2,
     p_aside_color_2,
     p_main_color_1,
     p_main_color_2
@@ -11,12 +12,16 @@ import {Text, Title} from "../assets/style/global/classes";
 import {useEffect, useRef, useState} from "react";
 import searchIcon from "../assets/media/icon/search.svg";
 import closeIcon from "../assets/media/icon/x_white.svg";
+import Button from "../components/Button";
+import {Link} from "react-router-dom";
+import starIcon from "../assets/media/icon/start_white.svg";
 
 const Header = styled.header`
-  border-bottom: 1px solid ${p_main_color_1};
+  border-bottom: 1px solid ${p_aside_color_1d2};
+  background-color: ${p_aside_color_1};
 `
 
-const Nav = styled.div`
+const Logo = styled.div`
   height: ${header_height};
 `
 
@@ -66,14 +71,21 @@ export default ({setSearch, search}) => {
     }, [isSearchingHidden]);
 
     return (
-        <Header className={'flex flex-col px-5 w-full justify-center'}>
-            <Nav className={'flex justify-between items-center'}>
-                <Title fontSize={4}>makeyour<Text fontWeight={2}>superleague</Text></Title>
-            </Nav>
-            <SearchButton onClick={() => setIsSearchingHidden(!isSearchingHidden)}
-                          className={'absolute right-5 rounded-full h-12 w-12 cursor-pointer'}
-                          ref={searchButton}></SearchButton>
-            <Search ref={searchInput} className={'w-full pb-4'} type="text"
+        <Header className={'flex flex-col px-5 w-full max-sm:px-2.5 max-sm:gap-5 max-sm:pb-5'}>
+            <div className={'flex items-center justify-between max-sm:flex-col'}>
+                <Logo className={'flex justify-between items-center'} to={'/'}>
+                    <Title fontSize={4}>your<Text fontWeight={2}>superleague</Text></Title>
+                </Logo>
+                <div className={'flex gap-2.5'}>
+                    <Link to="/leagues">
+                        <Button msg={'Leagues'} image={starIcon} imageHeight={19}/>
+                    </Link>
+                    <SearchButton onClick={() => setIsSearchingHidden(!isSearchingHidden)}
+                                  className={'rounded-full h-11 w-11 cursor-pointer'}
+                                  ref={searchButton}/>
+                </div>
+            </div>
+            <Search ref={searchInput} className={'w-full pb-4 max-sm:text-center'} type="text"
                     placeholder="Search for your super hero, villain or antihero"
                     onChange={e => setSearch(e.target.value)}
                     value={search || ""} spellCheck={false}/>

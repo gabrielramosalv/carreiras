@@ -3,6 +3,7 @@ export const p_main_color_1 = "rgb(35,35,35)";
 export const p_main_color_2 = "rgb(63,63,63)";
 export const p_aside_color_1 = "rgb(250,250,250)";
 export const p_aside_color_1d2 = "rgb(230, 230, 230)";
+export const p_aside_color_1d4 = "rgb(247,247,247)";
 export const p_aside_color_2 = "rgb(145,145,145)";
 export const p_blue_color_1 = "rgba(0,45,255,0.4)";
 export const p_blue_color_2 = "rgba(0,45,255,0.7)";

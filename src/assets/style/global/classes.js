@@ -34,7 +34,7 @@ const FontWeight = Object.freeze({
     2: f_w_bold
 })
 
-export const Text = styled.span`
+export const Text = styled.span.attrs(props => props.className)`
   font-size: ${props => FontSize[props.fontSize]};
   font-weight: ${props => props.fontWeight != null ? FontWeight[props.fontWeight] : f_w_normal};
   color: ${props => props.aside != null ? p_aside_color_2 : props.color != null ? props.color : p_main_color_2};
@@ -43,3 +43,4 @@ export const Text = styled.span`
 
 export const Title = Text.withComponent('h1');
 export const Subtitle = Text.withComponent('h2');
+export const Input = Text.withComponent('input');
